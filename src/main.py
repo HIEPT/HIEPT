@@ -2,12 +2,12 @@ from src.data_pro.data_pro import *
 import tensorflow as tf
 import numpy as np
 from src.lsh.lshash import LSHash
-from src.model.hiept import HIEPT
+from src.model.ntp import NextTopicPrediction
 
 data = DataPro(delimiter='\t', ne_type=ne_type)
 
 
-def hiept():
+def next_topic_prediction():
     # hashing user social network embedding vectors
     encoder_data = data.inputs
     network_lsh = LSHash(network_hash_size, np.shape(encoder_data)[1])
@@ -33,17 +33,17 @@ def hiept():
     train_inputs, test_inputs, train_labels, test_labels = split_data(hamming_code, data.labels, rate=0.3, seed=1)
     with tf.Session() as sess:
         with tf.variable_scope('models'):
-            hiept = HIEPT(sess, train_inputs, train_labels, test_inputs, test_labels, len(data.labels[0]),
+            ntp = NextTopicPrediction(sess, train_inputs, train_labels, test_inputs, test_labels, len(data.labels[0]),
                           lr=0.001, run_time=20000, batch_size=64, drop_out_rate=0.7,
                           learning_rate_decay_factor=0.98)
             sess.run(tf.global_variables_initializer())
-            hiept.tran_net()
-            predict_results = hiept.predict(test_inputs)
-            precession, recall, f1, accuracy = hiept.get_score(predict_results, test_labels)
+            ntp.tran_net()
+            predict_results = ntp.predict(test_inputs)
+            precession, recall, f1, accuracy = ntp.get_score(predict_results, test_labels)
             show('test results:')
             print 'precession:', precession, 'recall:', recall, 'f1:', f1, 'accuracy:', accuracy
-            hiept.show_all_image()
+            ntp.show_all_image()
 
 
 if __name__ == '__main__':
-    hiept()
+    next_topic_prediction()

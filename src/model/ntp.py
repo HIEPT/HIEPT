@@ -145,7 +145,7 @@ class BaseNNObject(BaseObject):
         plt.show()
 
 
-class HIEPT(BaseNNObject):
+class NextTopicPrediction(BaseNNObject):
     def __init__(self, sess, inputs_data, outputs_data, test_inputs, test_labels, output_dim, lr=0.0001,
                  batch_size=128, run_time=100000, learning_rate_decay_factor=0.98, output_interval=200,
                  drop_out_rate=0.9):

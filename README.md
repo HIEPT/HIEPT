@@ -1,5 +1,5 @@
-# HIEPT
-Python implementation for HIEPT (Hashing User Intrinsic and Extrinsic Preference for Next Topic Prediction)
+# NTP<sup>3</sup>
+Python implementation for NTP<sup>3</sup> (Hashing User Intrinsic and Extrinsic Preference for Next Topic Prediction)
 
 ## Requirements
 - python >= 2.7
@@ -17,7 +17,7 @@ The ` data` folder consists of four datasets, each having three subfolders:
 - tweets_embedding: embedding vectors for user tweets, we use [gensim](https://radimrehurek.com/gensim/models/doc2vec.html) to implement [doc2vec](https://arxiv.org/pdf/1405.4053v2.pdf)
 
 ## Usage
-To run HIEPT, first clone the project to your python IDE (eg:Pycharm), then run the `main.py`.
+To run NTP<sup>3</sup>, first clone the project to your python IDE (eg:Pycharm), then run the `main.py`.
 >Note: you need to install the required libs.
 
 ## Configuration
